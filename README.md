@@ -62,7 +62,7 @@ docker push docker.pkg.github.com/my_project/my_service/my_service:0.1.0
 
 Explore Hanami [guides](https://guides.hanamirb.org/), [API docs](http://docs.hanamirb.org/1.3.3/), or jump in [chat](http://chat.hanamirb.org) for help. Enjoy! 🌸
 
-Learn about [Twirp](hhttps://github.com/twitchtv/twirp).
+Learn about [Twirp](https://github.com/twitchtv/twirp).
 
 Learn about [protobuf](https://developers.google.com/protocol-buffers/docs/proto3).
 
