@@ -1,0 +1,21 @@
+require:
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 2.7
+  Exclude:
+    - lib/*_pb.rb
+    - db/**/*
+
+Style/Documentation:
+  Enabled: false
+Style/SymbolProc:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - server.rb
+    - lib/**/server.rb
+
+Layout/LineLength:
+  Max: 80
+  IgnoredPatterns: ['\A\s*#']

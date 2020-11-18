@@ -1,0 +1,51 @@
+version: "3.8"
+# https://docs.docker.com/docker-for-mac/osxfs/
+services:
+  db:
+    container_name: db
+    image: postgres:11
+    environment:
+      - POSTGRES_USER=$PGUSER
+      - POSTGRES_PASSWORD=$PGPASSWORD
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  my_service:
+    container_name: my-service
+    build: .
+    entrypoint: bundle
+    command: exec rackup -o '0.0.0.0' -p '50052'
+    depends_on:
+      - db
+    volumes:
+      - bundle:/usr/local/bundle:delegated
+    ports:
+      - 50052:50052
+
+  bundle:
+    build: .
+    entrypoint: bundle
+    command: check
+    volumes:
+      - bundle:/usr/local/bundle:delegated
+
+  rspec:
+    build: .
+    entrypoint: bundle
+    command: exec rspec --version
+    volumes:
+      - bundle:/usr/local/bundle:delegated
+
+  protoc:
+    build: .
+    entrypoint: bundle
+    command: |
+      exec grpc_tools_ruby_protoc
+      -I ../protos --ruby_out=./config/protobuf --twirp_ruby_out=./config/protobuf ../protos/my_service.proto
+    volumes:
+      - bundle:/usr/local/bundle:delegated
+      - ../protos:/usr/src/protos
+
+volumes:
+  bundle: {}
+  postgres: {}
