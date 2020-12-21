@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'bigdecimal', '~> 1.4' # https://github.com/hanami/model/issues/570
+gem 'bigdecimal', '~> 3.0' # https://github.com/hanami/model/issues/570
 gem 'hanami'
 gem 'hanami-model'
 gem 'twirp', require: false
